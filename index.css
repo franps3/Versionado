@@ -1,0 +1,138 @@
+/* ==========================================================================
+   INDEX.CSS — Home del club
+   Requiere base.css cargado antes en el HTML (usa sus variables).
+   Contiene: hero principal, sección "El ascenso" y grilla del plantel.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. HERO
+   h1 + h2 + imagen del estadio forman la portada. Se usa el selector de
+   atributo [alt="Estadio"] para apuntar a esa imagen puntual sin
+   agregar clases nuevas al HTML.
+   -------------------------------------------------------------------------- */
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-top: var(--space-5);
+}
+
+h2 {
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: var(--clr-celeste);
+  max-width: 60ch;
+  margin: var(--space-2) auto var(--space-4);
+  padding: 0 var(--space-2);
+}
+
+img[alt="Estadio"] {
+  display: block;
+  width: 100%;
+  max-width: var(--container-width);
+  height: 380px;
+  object-fit: cover;
+  margin: 0 auto var(--space-4);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+/* Párrafo introductorio, ubicado justo debajo del hero */
+body > p {
+  margin-bottom: var(--space-5);
+}
+
+/* --------------------------------------------------------------------------
+   2. ARTÍCULO "EL ASCENSO"
+   Primer <article> del documento: texto narrativo con imágenes de
+   apoyo intercaladas (asado / imagen a completar).
+   -------------------------------------------------------------------------- */
+article:nth-of-type(1) img {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  object-fit: cover;
+  margin: var(--space-3) auto;
+  box-shadow: var(--shadow-card);
+}
+
+/* --------------------------------------------------------------------------
+   3. ARTÍCULO "EL PLANTEL"
+   Segundo <article>: arma una grilla de "fichas" de jugador sin tocar
+   el HTML. Cada jugador es un <img> seguido de un <h4> con su número y
+   nombre; se les da display:inline-block para que el flujo normal del
+   documento los acomode en filas, mientras los <h3> (block-level por
+   default) siguen cortando la fila como títulos de sección
+   ("El plantel", "Foto grupal").
+   -------------------------------------------------------------------------- */
+article:nth-of-type(2) img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  display: inline-block;
+  vertical-align: bottom;
+  margin: var(--space-3) var(--space-1) 0;
+  border: 3px solid var(--clr-night-border);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+article:nth-of-type(2) img:hover {
+  border-color: var(--clr-celeste);
+  transform: translateY(-4px);
+}
+
+article:nth-of-type(2) h4 {
+  display: inline-block;
+  vertical-align: top;
+  width: 160px;
+  margin: 0 var(--space-1) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--clr-muted);
+}
+
+/* Ficha del Director Técnico: se destaca del resto del plantel */
+img[alt="Director"] {
+  width: 220px;
+  height: 220px;
+  border-color: var(--clr-gold);
+}
+
+/* Nombre del DT: en el HTML el <h4> va ANTES de su imagen (al revés que
+   los jugadores), por eso acá el selector usa "+" hacia adelante.
+   :has() requiere navegadores modernos (Chrome/Edge/Safari/Firefox
+   actuales); si no está soportado, el nombre se ve igual, sin el
+   acento dorado, así que funciona como mejora progresiva. */
+h4:has(+ img[alt="Director"]) {
+  color: var(--clr-gold);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  width: auto;
+}
+
+/* Foto grupal final: ocupa todo el ancho, no es una ficha más */
+img[alt="Plantel"] {
+  display: block;
+  width: 100%;
+  max-width: var(--container-width);
+  height: auto;
+  margin: var(--space-2) auto var(--space-5);
+  border: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. RESPONSIVE — INDEX
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  img[alt="Estadio"] {
+    height: 220px;
+  }
+
+  article:nth-of-type(2) img,
+  article:nth-of-type(2) h4 {
+    width: 120px;
+  }
+}

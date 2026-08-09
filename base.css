@@ -1,0 +1,220 @@
+/* ==========================================================================
+   BASE.CSS — Estudiantes de Río Cuarto
+   Hoja de estilos base, compartida por TODAS las páginas del sitio.
+   Contiene: tokens de diseño, reset, tipografía global, header, footer
+   y reglas genéricas de imágenes/artículos.
+
+   index.css y about.css asumen que este archivo se carga ANTES en el
+   <head> del HTML, porque reutilizan las variables definidas acá.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TIPOGRAFÍAS EXTERNAS
+   - Bebas Neue: trazo condensado para títulos y datos de camiseta.
+     Referencia directa a la cartelería de estadio / gráfica deportiva.
+   - Inter: tipografía de texto, pensada para lectura en pantalla.
+   - Roboto Mono: uso puntual en datos (número de jugador), refuerza la
+     idea de "ficha" o "planilla técnica".
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@500;700&display=swap');
+
+/* --------------------------------------------------------------------------
+   2. TOKENS DE DISEÑO (variables CSS)
+   Paleta basada en la identidad histórica del club: el celeste se
+   adoptó en 1917 como homenaje a la bandera argentina. Se reemplaza el
+   negro plano del CSS original por un "azul noche" con más profundidad,
+   más cercano a cómo se ve una cancha iluminada de noche.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color */
+  --clr-night:        #0d1b2a; /* fondo principal del sitio */
+  --clr-night-soft:    #142a3f; /* paneles, header, footer */
+  --clr-night-border:  #223c54; /* separadores / bordes sutiles */
+  --clr-celeste:       #4fa8da; /* celeste titular del club */
+  --clr-celeste-deep:  #1b4f72; /* celeste oscuro, bordes y hover */
+  --clr-white:         #f5f7fa;
+  --clr-muted:         #9fb3c8; /* texto secundario sobre fondo oscuro */
+  --clr-gold:          #c9a227; /* detalle de jerarquía ("tercer grande") */
+
+  /* Tipografía */
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:    'Roboto Mono', 'Courier New', monospace;
+
+  /* Espaciado — escala de 8px, evita valores sueltos por todo el CSS */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  /* Layout */
+  --container-width: 1100px;
+  --radius: 6px;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --transition: 0.2s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+   3. RESET BÁSICO
+   Normaliza comportamientos por defecto del navegador para partir de
+   una base predecible en cualquier página del sitio.
+   -------------------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --------------------------------------------------------------------------
+   4. TIPOGRAFÍA Y FONDO GLOBAL
+   Reemplaza Comic Sans (no profesional para un sitio institucional) por
+   el sistema tipográfico de los tokens. Fondo "azul noche" en vez de
+   negro plano: da profundidad y deja respirar al celeste como acento.
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  background-color: var(--clr-night);
+  color: var(--clr-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--clr-white);
+}
+
+h3 {
+  color: var(--clr-celeste);
+  border-bottom: 2px solid var(--clr-celeste-deep);
+  display: inline-block;
+  padding-bottom: var(--space-1);
+  margin: var(--space-4) auto var(--space-3);
+}
+
+p {
+  max-width: 65ch;
+  margin: 0 auto var(--space-2);
+  color: var(--clr-muted);
+  padding: 0 var(--space-2);
+}
+
+a {
+  color: var(--clr-celeste);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--clr-gold);
+}
+
+/* --------------------------------------------------------------------------
+   5. HEADER
+   Barra superior fija (sticky), escudo a la izquierda y navegación a la
+   derecha. El borde inferior celeste funciona como referencia a la
+   línea de cal de una cancha.
+   -------------------------------------------------------------------------- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--clr-night-soft);
+  border-bottom: 3px solid var(--clr-celeste);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+header a {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--clr-white);
+}
+
+header a:hover {
+  color: var(--clr-celeste);
+}
+
+/* --------------------------------------------------------------------------
+   6. FOOTER
+   Dos bloques (contacto / minimapa) distribuidos en columnas flexibles.
+   -------------------------------------------------------------------------- */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-2);
+  margin-top: var(--space-5);
+  background-color: var(--clr-night-soft);
+  border-top: 3px solid var(--clr-celeste);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+  text-align: left;
+}
+
+footer div {
+  min-width: 200px;
+}
+
+footer div:first-child {
+  font-family: var(--font-display);
+  color: var(--clr-white);
+  letter-spacing: 0.03em;
+}
+
+/* --------------------------------------------------------------------------
+   7. IMÁGENES Y ARTÍCULOS — REGLAS GENÉRICAS
+   Reglas base válidas en cualquier página. index.css y about.css las
+   particularizan donde haga falta (hero, grillas, etc.).
+   -------------------------------------------------------------------------- */
+article {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+  text-align: center;
+}
+
+article img {
+  max-width: 100%;
+  border-radius: var(--radius);
+}
+
+/* --------------------------------------------------------------------------
+   8. RESPONSIVE — BASE
+   Ajustes mínimos para que header/footer no rompan en mobile. Los
+   ajustes de cada sección de contenido van en el CSS de cada página.
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  header {
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-2);
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

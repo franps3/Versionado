@@ -1,0 +1,57 @@
+/* ==========================================================================
+   ABOUT.CSS — "Quiénes somos"
+   Requiere base.css cargado antes en el HTML (usa sus variables).
+   Contiene el layout de la página institucional: un bloque centrado
+   con el texto de presentación del club.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CONTENEDOR
+   Centra todo el contenido de body en un ancho de lectura cómodo,
+   igual que en el resto del sitio.
+   -------------------------------------------------------------------------- */
+body {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--space-2) var(--space-5);
+}
+
+/* --------------------------------------------------------------------------
+   2. TÍTULO Y TEXTO
+   -------------------------------------------------------------------------- */
+h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin: var(--space-5) auto var(--space-3);
+}
+
+body > p {
+  max-width: 70ch;
+  margin: 0 auto var(--space-3);
+  font-size: 1.05rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. IMAGEN INSTITUCIONAL
+   Se le da un borde superior celeste para que funcione como una
+   pequeña "tarjeta" dentro del fondo oscuro, en vez de flotar suelta.
+   -------------------------------------------------------------------------- */
+body > img {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  height: 350px;
+  object-fit: cover;
+  margin: var(--space-4) auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  border-top: 4px solid var(--clr-celeste);
+}
+
+/* --------------------------------------------------------------------------
+   4. RESPONSIVE — ABOUT
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  body > img {
+    height: 220px;
+  }
+}
