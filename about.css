@@ -7,21 +7,24 @@
 
 /* --------------------------------------------------------------------------
    1. CONTENEDOR
-   Centra todo el contenido de body en un ancho de lectura cómodo,
-   igual que en el resto del sitio.
+   OJO: el max-width NO va en <body>. header y footer, tal como están
+   en el HTML (fuera de las etiquetas <body> en el código fuente), el
+   navegador los reubica como hijos del body al parsear la página —
+   así que si el body tiene max-width, quedan encajonados en vez de ir
+   de punta a punta (eso era el bug: la franja celeste no llegaba a
+   los bordes). En cambio, cada bloque de contenido (h1, párrafo,
+   imagen) se centra individualmente con su propio max-width, igual
+   que ya hacían body > p y body > img más abajo.
    -------------------------------------------------------------------------- */
-body {
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 var(--space-2) var(--space-5);
-}
 
 /* --------------------------------------------------------------------------
    2. TÍTULO Y TEXTO
    -------------------------------------------------------------------------- */
 h1 {
   font-size: clamp(2.5rem, 6vw, 4rem);
+  max-width: var(--container-width);
   margin: var(--space-5) auto var(--space-3);
+  padding: 0 var(--space-2);
 }
 
 body > p {

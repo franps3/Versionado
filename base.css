@@ -20,21 +20,22 @@
 
 /* --------------------------------------------------------------------------
    2. TOKENS DE DISEÑO (variables CSS)
-   Paleta basada en la identidad histórica del club: el celeste se
-   adoptó en 1917 como homenaje a la bandera argentina. Se reemplaza el
-   negro plano del CSS original por un "azul noche" con más profundidad,
-   más cercano a cómo se ve una cancha iluminada de noche.
+   Tema claro: fondo general gris muy claro, paneles (header/footer) en
+   celeste de camiseta. Todos los colores de texto de acá para abajo
+   están elegidos para tener contraste legible sobre ESTE fondo claro,
+   no sobre fondo oscuro como en la versión anterior.
    -------------------------------------------------------------------------- */
 :root {
   /* Color */
-  --clr-night:        #eef0f3fb; /* fondo principal del sitio */
-  --clr-night-soft:    #75b1e9; /* paneles, header, footer */
-  --clr-night-border:  #223c54; /* separadores / bordes sutiles */
-  --clr-celeste:       #4fa8da; /* celeste titular del club */
-  --clr-celeste-deep:  #1b4f72; /* celeste oscuro, bordes y hover */
-  --clr-white:         #f5f7fa;
-  --clr-muted:         #9fb3c8; /* texto secundario sobre fondo oscuro */
-  --clr-gold:          #c9a227; /* detalle de jerarquía ("tercer grande") */
+  --clr-night:        #eef0f3; /* fondo principal del sitio (claro) */
+  --clr-night-soft:    #75b1e9; /* paneles: header y footer */
+  --clr-night-border:  #223c54; /* marco oscuro de fotos/tarjetas */
+  --clr-celeste:       #4fa8da; /* celeste de marca: links, acentos, bordes */
+  --clr-celeste-deep:  #1b4f72; /* celeste oscuro: alto contraste, hover */
+  --clr-white:         #f5f7fa; /* texto/placas sobre paneles celestes */
+  --clr-ink:           #10202f; /* texto principal, alto contraste en claro */
+  --clr-muted:         #46586b; /* texto secundario, legible sobre claro */
+  --clr-gold:          #93690f; /* detalle de jerarquía, oscurecido para rendir sobre blanco */
 
   /* Tipografía */
   --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
@@ -51,7 +52,7 @@
   /* Layout */
   --container-width: 1100px;
   --radius: 6px;
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 8px 24px rgba(13, 27, 42, 0.2);
   --transition: 0.2s ease-in-out;
 }
 
@@ -72,14 +73,15 @@ html {
 
 /* --------------------------------------------------------------------------
    4. TIPOGRAFÍA Y FONDO GLOBAL
-   Reemplaza Comic Sans (no profesional para un sitio institucional) por
-   el sistema tipográfico de los tokens. Fondo "azul noche" en vez de
-   negro plano: da profundidad y deja respirar al celeste como acento.
+   Texto en --clr-ink (azul noche), no blanco: sobre el fondo claro
+   actual el blanco directamente desaparece. --clr-ink da máximo
+   contraste y sigue leyéndose como "identidad oscura" del club, solo
+   que ahora funciona como color de texto en vez de fondo.
    -------------------------------------------------------------------------- */
 body {
   font-family: var(--font-body);
   background-color: var(--clr-night);
-  color: var(--clr-white);
+  color: var(--clr-ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -88,12 +90,15 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--clr-celeste);
+  color: var(--clr-ink);
 }
 
+/* h3 se usa como subtítulo de sección ("El plantel", "Plantel", etc.):
+   se destaca en celeste oscuro en vez de celeste puro, que sobre este
+   fondo tan claro queda demasiado pálido para leerse cómodo. */
 h3 {
-  color: var(--clr-celeste);
-  border-bottom: 2px solid var(--clr-celeste-deep);
+  color: var(--clr-celeste-deep);
+  border-bottom: 2px solid var(--clr-celeste);
   display: inline-block;
   padding-bottom: var(--space-1);
   margin: var(--space-4) auto var(--space-3);
@@ -106,8 +111,11 @@ p {
   padding: 0 var(--space-2);
 }
 
+/* Los links de texto corrido usan celeste oscuro: el celeste de marca
+   puro es lindo como acento (bordes, fondos) pero como color de texto
+   sobre fondo claro no llega al contraste mínimo legible. */
 a {
-  color: var(--clr-celeste);
+  color: var(--clr-celeste-deep);
   text-decoration: none;
   transition: color var(--transition);
 }
@@ -119,9 +127,9 @@ a:focus-visible {
 
 /* --------------------------------------------------------------------------
    5. HEADER
-   Barra superior fija (sticky), escudo a la izquierda y navegación a la
-   derecha. El borde inferior celeste funciona como referencia a la
-   línea de cal de una cancha.
+   Barra superior fija (sticky) en celeste, el color de camiseta del
+   club. Texto en azul noche (no blanco): sobre celeste claro el
+   blanco pierde demasiado contraste.
    -------------------------------------------------------------------------- */
 header {
   display: flex;
@@ -131,7 +139,8 @@ header {
   gap: var(--space-3);
   padding: var(--space-2) var(--space-4);
   background-color: var(--clr-night-soft);
-  border-bottom: 3px solid var(--clr-celeste);
+  border-bottom: 3px solid var(--clr-celeste-deep);
+  box-shadow: 0 2px 12px rgba(13, 27, 42, 0.2);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -144,10 +153,17 @@ header a:first-child {
   margin-right: auto;
 }
 
+/* Placa blanca detrás del escudo: da un punto de contraste fijo, útil
+   ya mismo con la imagen rota y también cuando cargue el escudo real
+   (suelen tener fondo transparente). */
 header img {
   width: 48px;
   height: 48px;
   object-fit: contain;
+  background-color: var(--clr-white);
+  border-radius: var(--radius);
+  padding: 4px;
+  box-shadow: 0 0 0 2px var(--clr-celeste-deep);
 }
 
 header a {
@@ -155,40 +171,71 @@ header a {
   font-size: 1.5rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--clr-white);
+  color: var(--clr-ink);
 }
 
-header a:hover {
-  color: var(--clr-celeste);
+/* Los links de navegación (no el logo) reciben un fondo tipo
+   "pastilla" al pasar el mouse, más notorio que solo cambiar el
+   color de texto sobre un fondo ya de por sí saturado. */
+header a:not(:first-child) {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+header a:not(:first-child):hover,
+header a:not(:first-child):focus-visible {
+  background-color: var(--clr-celeste-deep);
+  color: var(--clr-white);
 }
 
 /* --------------------------------------------------------------------------
    6. FOOTER
-   Dos bloques (contacto / minimapa) distribuidos en columnas flexibles.
+   Grilla de dos columnas (contacto / minimapa) en el mismo celeste que
+   el header, para que ambos se lean como una sola franja de marca.
    -------------------------------------------------------------------------- */
 footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
   gap: var(--space-3);
-  padding: var(--space-4) var(--space-2);
+  padding: var(--space-4);
   margin-top: var(--space-5);
   background-color: var(--clr-night-soft);
-  border-top: 3px solid var(--clr-celeste);
+  border-top: 3px solid var(--clr-celeste-deep);
   font-family: var(--font-mono);
   font-size: 0.9rem;
   color: var(--clr-muted);
   text-align: left;
 }
 
-footer div {
-  min-width: 200px;
-}
-
+/* Etiquetas ("Contacto", "Facebook:") en la tipografía de títulos,
+   con más peso visual que los datos de contacto en sí. */
 footer div:first-child {
   font-family: var(--font-display);
-  color: var(--clr-white);
+  font-size: 1.15rem;
   letter-spacing: 0.03em;
+  color: var(--clr-ink);
+}
+
+/* Los <p> del footer (número, mail) heredan el estilo global de <p>
+   pensado para párrafos largos centrados; acá se resetean para que se
+   comporten como líneas de una ficha de contacto. */
+footer p {
+  max-width: none;
+  margin: var(--space-1) 0 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+}
+
+footer div:last-child {
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+  color: var(--clr-ink);
 }
 
 /* --------------------------------------------------------------------------
@@ -220,8 +267,16 @@ article img {
     padding: var(--space-2);
   }
 
+  header a {
+    font-size: 1.1rem;
+  }
+
   footer {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  footer div:last-child {
     text-align: center;
   }
 }
