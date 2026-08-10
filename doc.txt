@@ -1,1 +1,20 @@
-alguien tiene que documentar la naturaleza del proyecto, los roles, las herramientas utilizadas y algo más 
+1. Naturaleza del ProyectoEl proyecto consiste en el desarrollo de un sitio web institucional y conmemorativo dedicado a la Asociación Atlética Estudiantes de Río Cuarto (el "tercer grande de Córdoba").  El objetivo principal de esta plataforma es inmortalizar la historia e identidad del club, 
+abarcando desde la presentación de su estadio y sus campañas de ascenso al fútbol 
+profesional (Primera Nacional), hasta la exhibición técnica e interactiva de la plantilla del primer 
+equipo y su cuerpo técnico. Todo el sitio fue diseñado bajo un esquema responsive y un tema 
+visual adaptado a los colores institucionales del club.  
+
+2. Estructura de Roles del Equipo
+Francisco Ferreira (Product Owner): Liderazgo del proyecto, definición de requerimientos, priorización de tareas en el backlog y aprobación de las entregas finales.
+Ianis Nocetti (Documentador Técnico): Redacción y mantenimiento de la documentación técnica, registro de especificaciones, arquitectura de archivos y mapa de versiones.
+Roberth Fernandez (Quality Assurance - QA): Control de calidad integral, pruebas funcionales, auditoría de diseño adaptativo (responsive), verificación de contraste y reporte de bugs visuales.
+Khalil Kouri (Gestor de Contenido Visual): Recolección, edición, formato y optimización de los assets fotográficos (escudos, fotos de estadio, fotos grupales y fichas del plantel en formatos .webp, .jpg e .ico).  
+Luciano Guarniere (Maquetador HTML / Contenidos): Estructuración semántica del contenido en HTML5 (index.html, about.html), redacción de reseñas institucionales y armado de listas del plantel.  
+Marco Zuzunaga (Arquitecto de CSS / Estilos): Diseño del sistema de tokens (tema claro en base.css), maquetación de la grilla del plantel en 2 columnas y resolución del layout de ancho completo en cabecera y pie de página.  
+
+3. Herramientas y Tecnologías Utilizadas
+HTML5 Semántico: Estructuración de las páginas (index.html y about.html) mediante etiquetas como <header>, <article>, <footer>, y listas semánticas (<ul class="plantel__grid">).  
+
+CSS3 Modularizado:Tokens de Diseño (Variables CSS): Centralización de colores, fuentes y espaciados en base.css.  Layouts Modernos: Maquetación con Flexbox (para header y footer) y CSS Grid (para la grilla del plantel en 2 columnas).  Pseudo-clases avanzadas (:has()): Aplicación de estilos dorados automáticos al Director Técnico.  
+Google Fonts (@import): Integración de las tipografías Bebas Neue (estética deportiva), Inter (lectura) y Roboto Mono (fichas técnicas).  
+Formatos de Imagen Optimizados: Uso del formato web de alta compresión .webp junto a .jpg e .ico para asegurar tiempos de carga rápidos.
