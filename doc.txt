@@ -5,7 +5,7 @@ equipo y su cuerpo técnico. Todo el sitio fue diseñado bajo un esquema respons
 visual adaptado a los colores institucionales del club.  
 
 2. Estructura de Roles del Equipo
-Francisco Ferreira (Product Owner): Liderazgo del proyecto, definición de requerimientos, priorización de tareas en el backlog y aprobación de las entregas finales.
+Francisco Ferreyra (Product Owner): Liderazgo del proyecto, definición de requerimientos, priorización de tareas en el backlog y aprobación de las entregas finales.
 Ianis Nocetti (Documentador Técnico): Redacción y mantenimiento de la documentación técnica, registro de especificaciones, arquitectura de archivos y mapa de versiones.
 Roberth Fernandez (Quality Assurance - QA): Control de calidad integral, pruebas funcionales, auditoría de diseño adaptativo (responsive), verificación de contraste y reporte de bugs visuales.
 Khalil Kouri (Gestor de Contenido Visual): Recolección, edición, formato y optimización de los assets fotográficos (escudos, fotos de estadio, fotos grupales y fichas del plantel en formatos .webp, .jpg e .ico).  
