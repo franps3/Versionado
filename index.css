@@ -11,8 +11,12 @@
    agregar clases nuevas al HTML.
    -------------------------------------------------------------------------- */
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  margin-top: var(--space-5);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  margin: var(--space-5) auto var(--space-3);
+  flex-wrap: wrap;
+  width: 1000px;
+  margin: 0 auto; /* Centra horizontalmente */
+  
 }
 
 h2 {
@@ -24,6 +28,12 @@ h2 {
   color: var(--clr-celeste);
   max-width: 60ch;
   margin: var(--space-2) auto var(--space-4);
+  padding: 0 var(--space-2);
+}
+
+h3 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: var(--space-4) auto var(--space-3);
   padding: 0 var(--space-2);
 }
 
@@ -59,34 +69,33 @@ article:nth-of-type(1) img {
 
 /* --------------------------------------------------------------------------
    3. ARTÍCULO "EL PLANTEL"
-   Segundo <article>: arma una grilla de "fichas" de jugador sin tocar
-   el HTML. Cada jugador es un <img> seguido de un <h4> con su número y
-   nombre; se les da display:inline-block para que el flujo normal del
-   documento los acomode en filas, mientras los <h3> (block-level por
-   default) siguen cortando la fila como títulos de sección
-   ("El plantel", "Foto grupal").
+   Requiere: article.plantel > ul.plantel__grid > li > img + h4
+   Grilla fija de 2 columnas. Al final, fuera de la grilla, va la foto
+   grupal grande y centrada, bajo el título "Plantel".
    -------------------------------------------------------------------------- */
-article:nth-of-type(2) img {
-  width: 160px;
-  height: 160px;
+.plantel__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin: var(--space-3) 0 var(--space-4);
+}
+
+.plantel__grid img {
+  width: 75%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  display: inline-block;
-  vertical-align: bottom;
-  margin: var(--space-3) var(--space-1) 0;
   border: 3px solid var(--clr-night-border);
   transition: border-color var(--transition), transform var(--transition);
 }
 
-article:nth-of-type(2) img:hover {
+.plantel__grid img:hover {
   border-color: var(--clr-celeste);
   transform: translateY(-4px);
 }
 
-article:nth-of-type(2) h4 {
-  display: inline-block;
-  vertical-align: top;
-  width: 160px;
-  margin: 0 var(--space-1) var(--space-3);
+.plantel__grid h4 {
+  margin-top: var(--space-1);
   font-family: var(--font-mono);
   font-size: 0.85rem;
   letter-spacing: 0;
@@ -94,33 +103,36 @@ article:nth-of-type(2) h4 {
   color: var(--clr-muted);
 }
 
-/* Ficha del Director Técnico: se destaca del resto del plantel */
-img[alt="Director"] {
-  width: 220px;
-  height: 220px;
+/* Ficha del Director Técnico: ocupa la fila completa (evita que quede
+   sola en una columna con un hueco vacío al lado) y se destaca del
+   resto del plantel con el acento dorado. */
+.plantel__dt {
+  grid-column: 1 / -1;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+.plantel__dt img {
   border-color: var(--clr-gold);
 }
 
-/* Nombre del DT: en el HTML el <h4> va ANTES de su imagen (al revés que
-   los jugadores), por eso acá el selector usa "+" hacia adelante.
-   :has() requiere navegadores modernos (Chrome/Edge/Safari/Firefox
-   actuales); si no está soportado, el nombre se ve igual, sin el
-   acento dorado, así que funciona como mejora progresiva. */
-h4:has(+ img[alt="Director"]) {
-  color: var(--clr-gold);
+.plantel__dt h4 {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  width: auto;
+  font-size: 1.1rem;
+  color: var(--clr-gold);
 }
 
-/* Foto grupal final: ocupa todo el ancho, no es una ficha más */
-img[alt="Plantel"] {
+/* Foto grupal: imagen grande a todo el ancho del contenedor, siempre
+   al final del artículo, bajo el título "Plantel". */
+.plantel__foto {
   display: block;
-  width: 100%;
+  width: 85%;
   max-width: var(--container-width);
   height: auto;
-  margin: var(--space-2) auto var(--space-5);
-  border: none;
+  margin: var(--space-3) auto var(--space-5);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  border-top: 4px solid var(--clr-celeste);
 }
 
 /* --------------------------------------------------------------------------
@@ -131,8 +143,7 @@ img[alt="Plantel"] {
     height: 220px;
   }
 
-  article:nth-of-type(2) img,
-  article:nth-of-type(2) h4 {
-    width: 120px;
+  .plantel__grid {
+    grid-template-columns: 1fr;
   }
 }

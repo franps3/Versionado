@@ -27,8 +27,8 @@
    -------------------------------------------------------------------------- */
 :root {
   /* Color */
-  --clr-night:        #0d1b2a; /* fondo principal del sitio */
-  --clr-night-soft:    #142a3f; /* paneles, header, footer */
+  --clr-night:        #eef0f3fb; /* fondo principal del sitio */
+  --clr-night-soft:    #75b1e9; /* paneles, header, footer */
   --clr-night-border:  #223c54; /* separadores / bordes sutiles */
   --clr-celeste:       #4fa8da; /* celeste titular del club */
   --clr-celeste-deep:  #1b4f72; /* celeste oscuro, bordes y hover */
@@ -88,7 +88,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--clr-white);
+  color: var(--clr-celeste);
 }
 
 h3 {
@@ -126,15 +126,22 @@ a:focus-visible {
 header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  gap: var(--space-2);
+  gap: var(--space-3);
   padding: var(--space-2) var(--space-4);
   background-color: var(--clr-night-soft);
   border-bottom: 3px solid var(--clr-celeste);
   position: sticky;
   top: 0;
   z-index: 10;
+}
+
+/* El logo va solo a la izquierda; margin-right:auto empuja todo lo
+   que viene después (los links de navegación) hacia la derecha,
+   donde antes solo estaba "Inicio". Así quedan los dos agrupados. */
+header a:first-child {
+  margin-right: auto;
 }
 
 header img {
@@ -145,7 +152,7 @@ header img {
 
 header a {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--clr-white);
