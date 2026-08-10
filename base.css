@@ -157,13 +157,8 @@ header a:first-child {
    ya mismo con la imagen rota y también cuando cargue el escudo real
    (suelen tener fondo transparente). */
 header img {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  background-color: var(--clr-white);
-  border-radius: var(--radius);
-  padding: 4px;
-  box-shadow: 0 0 0 2px var(--clr-celeste-deep);
+  max-width: 80px;
+  padding-bottom: 0%;
 }
 
 header a {

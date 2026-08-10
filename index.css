@@ -11,8 +11,9 @@
    agregar clases nuevas al HTML.
    -------------------------------------------------------------------------- */
 h1 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(6rem, 9vw, 5rem);
   margin: var(--space-5) auto var(--space-3);
+  text-align: center;
   flex-wrap: wrap;
   width: 1000px;
   margin: 0 auto; /* Centra horizontalmente */
@@ -20,15 +21,16 @@ h1 {
 }
 
 h2 {
-  font-family: var(--font-body);
   text-transform: none;
   letter-spacing: normal;
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: var(--clr-celeste);
-  max-width: 60ch;
-  margin: var(--space-2) auto var(--space-4);
-  padding: 0 var(--space-2);
+  font-weight: 8000;
+  font-size: 2.8rem;
+  text-decoration-style: double;
+  max-width: 6000px;
+  text-align: center;
+  text-anchor: 0.1rem;
+  padding-bottom: 0%;
+  color:#75b1e9
 }
 
 h3 {
